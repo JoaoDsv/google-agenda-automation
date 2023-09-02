@@ -1,0 +1,19 @@
+{
+  "name": "google-agenda-automation",
+  "version": "1.0.0",
+  "description": "A simple script to create daily recurring events with variations in their names",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JoaoDsv/google-agenda-automation.git"
+  },
+  "author": "joao.pro.dsvm@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JoaoDsv/google-agenda-automation/issues"
+  },
+  "homepage": "https://github.com/JoaoDsv/google-agenda-automation#readme"
+}
