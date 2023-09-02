@@ -22,7 +22,7 @@ async function main() {
   const refreshToken = readToken("refresh-token.json");
 
   oAuth2Client.setCredentials({ accessToken, refreshToken });
-  createEvent();
+  createEvents();
 }
 
 function readToken(tokenFile) {
@@ -86,7 +86,20 @@ function saveToken(tokens) {
   }
 }
 
-async function createEvent() {
+async function createEvents() {
+  // Build event properties
+  const eventDetails = {
+    summary: "🥥 Breakfast",
+    start: {
+      dateTime: "2023-09-03T10:00:00", // Start datetime at ISO format
+      timeZone: "CET",
+    },
+    end: {
+      dateTime: "2023-09-03T10:45:00", // End datetime at ISO format
+      timeZone: "CET",
+    },
+    recurrence: ["RRULE:FREQ=DAILY;COUNT=30"], // Daily recurrence for 30 days
+  };
 
   try {
     // API connection
@@ -95,9 +108,15 @@ async function createEvent() {
       auth: oAuth2Client,
     });
 
-    console.log("API connected ✅", response.data.htmlLink);
+    // Request events creation
+    const response = await calendar.events.insert({
+      calendarId: "primary",
+      resource: eventDetails,
+    });
+
+    console.log("✅ Events created: %s", response.data.htmlLink);
   } catch (error) {
-    console.error("Error connecting to the API:", error);
+    console.error("Error creating events:", error);
   }
 }
 
