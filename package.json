@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/JoaoDsv/google-agenda-automation/issues"
   },
-  "homepage": "https://github.com/JoaoDsv/google-agenda-automation#readme"
+  "homepage": "https://github.com/JoaoDsv/google-agenda-automation#readme",
+  "dependencies": {
+    "google-auth-library": "^9.0.0",
+    "googleapis": "^126.0.1",
+  }
 }
