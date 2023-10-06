@@ -19,15 +19,21 @@ const SCOPES = ["https://www.googleapis.com/auth/calendar"];
 let tokens = { access_token: "", refresh_token: "" };
 
 async function main() {
-  readToken("access_token", "access-token.json");
-  readToken("refresh_token", "refresh-token.json");
+  await readToken("access_token", "access-token.json");
+  await readToken("refresh_token", "refresh-token.json");
 
-  oAuth2Client.setCredentials(tokens);
-  await createEvents();
+  console.log("setting up credentials...");
+
+  setTimeout(() => {
+    console.log("creating events...");
+    return oAuth2Client.setCredentials(tokens);
+  }, 3000);
+
+  setTimeout(async () => await createEvents(), 6000);
 }
 
-function readToken(tokenName, tokenFile) {
-  fs.readFile(tokenFile, (error, token) => {
+async function readToken(tokenName, tokenFile) {
+  await fs.readFile(tokenFile, (error, token) => {
     if (error) {
       console.log(`No ${tokenFile} found.`);
 
